@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='rpn-calc-engine',
-    version='0.0.1',
+    version='0.1.0',
     author='jeffrey k eliasen',
     author_email='jeff+rpn-calc-engine@jke.net',
     description='an RPN calculator engine for use in workshops',
