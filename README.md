@@ -52,7 +52,7 @@ Once `setuptools` is installed, all testing is handled through `setup.py`.
 
 The easiest way to run the test suite is using `setup.py`:
 
-    python setup.py flake8 test
+    python setup.py test
 
 ### Adding new tests
 

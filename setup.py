@@ -1,4 +1,26 @@
+import subprocess
+import sys
+
 from setuptools import setup
+from setuptools.command.test import test as TestCommand
+
+
+class TestAndLint(TestCommand):
+
+    description = 'run linters and tests'
+    user_options = []
+
+    def run_tests(self, *args, **kwargs):
+        TestCommand.run_tests(self, *args, **kwargs)
+        self._run(['flake8', 'rpncalculator', 'test', 'setup.py'])
+
+    def _run(self, command):
+        try:
+            subprocess.check_call(command)
+        except subprocess.CalledProcessError as error:
+            print('Command failed with exit code', error.returncode)
+            sys.exit(error.returncode)
+
 
 setup(
     name='rpn-calc-engine',
@@ -28,4 +50,7 @@ setup(
         'mock',
     ],
     test_suite='nose.collector',
+    cmdclass={
+        'test': TestAndLint,
+    },
 )
