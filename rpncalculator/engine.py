@@ -25,11 +25,11 @@ class Engine(object):
         if auto_register:
             register_all(self)
 
-    def pop(self):
+    def pop(self, i=-1):
         """remove one value from the stack and return it"""
         if len(self._stack) == 0:
             return None
-        return self._stack.pop()
+        return self._stack.pop(i)
 
     def push(self, value):
         """push a value to the stack, value must be of a numeric type"""
