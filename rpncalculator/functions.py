@@ -26,10 +26,24 @@ def add(engine):
     """add the top two numbers on the stack"""
     engine.push(engine.pop() + engine.pop())
 
+@register('-')
+def subtract(engine):
+    """subtract the last number on the stack from the prior"""
+    engine.push(engine.pop(-2) - engine.pop(-1))
 
 @register('/')
 def divide(engine):
     """floating-point divide stack[-2] by stack[-1]"""
-    dividend = engine.pop()
     divisor = engine.pop()
-    engine.push(1. * divisor / dividend)
+    dividend = engine.pop()
+    engine.push(1. * dividend / divisor)
+
+@register('*')
+def multiply(engine):
+    """floating-point multiply top two numbers on the stack"""
+    engine.push(engine.pop() * engine.pop())
+
+@register('^')
+def power(engine):
+    """floating-point raise stack[-2] to stack[-1] power"""
+    engine.push(engine.pop(-2) ** engine.pop(-1))
